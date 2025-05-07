@@ -1,0 +1,28 @@
+
+.sliderContainer {
+    margin: 50px auto; 
+    max-width: 1200px; }
+
+.categoryItem {
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease; 
+}
+
+.categoryItem:hover {
+    transform: scale(1.05);
+}
+.categoryItem img {
+    max-width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease; 
+}
+
+.categoryItem:hover img {
+    transform: scale(1.1); }
+
+.categoryItem h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #333;
+}

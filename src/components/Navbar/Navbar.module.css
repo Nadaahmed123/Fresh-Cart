@@ -1,0 +1,14 @@
+.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    color: white;
+  }
+  
+  .nav-link.active {
+    color: white;
+    font-weight: bold;
+  }
