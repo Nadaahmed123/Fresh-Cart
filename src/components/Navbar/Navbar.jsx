@@ -35,7 +35,7 @@ let navigate=useNavigate();
             <NavLink to="/products" className="nav-link px-3" >
               Products
             </NavLink>
-            <NavLink to="/categories" className="nav-link px-3" >
+            {/* <NavLink to="/categories" className="nav-link px-3" >
               Categories
             </NavLink>
             <NavLink to="/brands" className="nav-link px-3" >
@@ -44,7 +44,7 @@ let navigate=useNavigate();
             <NavLink to="/about" className="nav-link px-3" >
               About
             </NavLink>
-            
+             */}
             <NavLink to="/cart" className="nav-link px-3" >
               <i className="bi bi-cart"></i> Cart
             </NavLink>

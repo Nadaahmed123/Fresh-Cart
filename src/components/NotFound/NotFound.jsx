@@ -1,17 +1,15 @@
-import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import style from './NotFound.module.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import style from './NotFound.module.css';
+
 export default function NotFound() {
-  const [counter,setCounter] =useState(0);
-  useEffect(()=>{
-
-  },[])
-
-    return 
-    <>
-    <h1>templete name </h1>
-    <p>Lorem ipsum dolor sit amet.</p> 
-    </>
-  
+  return (
+    <div className={style.container}>
+      <div className={style.content}>
+        <h1 className={style.title}>404</h1>
+        <p className={style.message}>Oops! The page you're looking for doesn't exist.</p>
+        <Link to="/" className={style.button}>Go to Homepage</Link>
+      </div>
+    </div>
+  );
 }

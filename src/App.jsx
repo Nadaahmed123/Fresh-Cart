@@ -33,10 +33,10 @@ const router = createBrowserRouter([
       { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
       { path: 'products', element: <ProtectedRoute><Products /></ProtectedRoute> },
       { path: 'productdetails/:id/:category', element: <ProtectedRoute><ProductDeetails /></ProtectedRoute> },
-      { path: 'about', element: <ProtectedRoute><About /></ProtectedRoute> },
+      // { path: 'about', element: <ProtectedRoute><About /></ProtectedRoute> },
       { path: 'cart', element: <ProtectedRoute><Cart /></ProtectedRoute> },
-      { path: 'brands', element: <ProtectedRoute><Brands /></ProtectedRoute> },
-      { path: 'categories', element: <ProtectedRoute><Categories /></ProtectedRoute> },
+      // { path: 'brands', element: <ProtectedRoute><Brands /></ProtectedRoute> },
+      // { path: 'categories', element: <ProtectedRoute><Categories /></ProtectedRoute> },
       { path: '*', element: <NotFound /> }
     ]
   },
