@@ -3,12 +3,16 @@ import style from './ProductDeetails.module.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Slider from "react-slick";
+import { useContext } from 'react';
+import { CartContext } from '../../Context/cart/CartContext';
+import toast from 'react-hot-toast';
 
 export default function ProductDeetails() {
   const [productDetails, setProductDetails] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   
   const { id, category } = useParams();
+  const { addToCart } = useContext(CartContext);
 
   const settings = {
     dots: true,
@@ -37,6 +41,24 @@ export default function ProductDeetails() {
       .catch((error) => {
         console.error("Failed to fetch related products", error);
       });
+  }
+
+  async function addProductToCart(productId){
+    if(!localStorage.getItem('userToken')) {
+      toast.error('Please login to add items to cart', { duration: 1500, position: 'top-center' });
+      return;
+    }
+    try {
+      const response = await addToCart(productId);
+      if(response?.data?.status === 'success') {
+        toast.success('Product added successfully to cart', { duration: 1500, position: 'top-center' });
+      } else {
+        toast.error(response?.data?.message || 'Failed to add to cart', { duration: 1500, position: 'top-center' });
+      }
+    } catch (error) {
+      toast.error('An error occurred while adding to cart', { duration: 1500, position: 'top-center' });
+      console.error('Error adding to cart:', error);
+    }
   }
 
   useEffect(() => {
@@ -81,7 +103,7 @@ export default function ProductDeetails() {
               <i className="fas fa-star text-warning ms-1"></i>
             </span>
           </div>
-          <button className="btn btn-success">Add to Cart</button>
+          <button onClick={()=>addProductToCart(productDetails.id)} className="btn btn-success">Add to Cart</button>
         </div>
       </div>
 
@@ -104,7 +126,7 @@ export default function ProductDeetails() {
                     <i className="fas fa-star text-warning ms-1"></i>
                   </span>
                 </div>
-                <button className="btn btn-success mt-2">Add to Cart</button>
+                <button onClick={()=>addProductToCart(product.id)} className="btn btn-success mt-2">Add to Cart</button>
               </div>
             </div>
           ))

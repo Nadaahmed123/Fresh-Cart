@@ -7,9 +7,31 @@ import { useQuery } from '@tanstack/react-query';
 import { ClimbingBoxLoader } from 'react-spinners';
 import axios from 'axios';
 import { useProducts } from '../../Hooks/useProducts';
+import { useContext } from 'react';
+import { CartContext } from '../../Context/cart/CartContext';
+import toast from 'react-hot-toast';
 export default function Products(props) {
   const [counter,setCounter] =useState(0);
   let {data ,isError,error,isLoading,isFetching}=useProducts();
+  const { addToCart } = useContext(CartContext);
+
+  async function addProductToCart(productId){
+    if(!localStorage.getItem('userToken')) {
+      toast.error('Please login to add items to cart', { duration: 1500, position: 'top-center' });
+      return;
+    }
+    try {
+      const response = await addToCart(productId);
+      if(response?.data?.status === 'success') {
+        toast.success('Product added successfully to cart', { duration: 1500, position: 'top-center' });
+      } else {
+        toast.error(response?.data?.message || 'Failed to add to cart', { duration: 1500, position: 'top-center' });
+      }
+    } catch (error) {
+      toast.error('An error occurred while adding to cart', { duration: 1500, position: 'top-center' });
+      console.error('Error adding to cart:', error);
+    }
+  }
   useEffect(()=>{
 
   },[]);
@@ -67,7 +89,7 @@ export default function Products(props) {
                   </span>
                 </div>
               </Link>
-              <button className={`btn btn-success mt-2 ${style.btnAdd}`}>Add to Cart</button>
+              <button onClick={()=>addProductToCart(product.id)} className={`btn btn-success mt-2 ${style.btnAdd}`}>Add to Cart</button>
             </div>
           </div>
         ))}
