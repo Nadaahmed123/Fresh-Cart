@@ -13,12 +13,14 @@ export default function Layout() {
   }, []);
 
   return (
-    <>
+    <div className="layout-container">
       <Navbar />
-      <div className="container pt-5 ">
-        <Outlet />
-      </div>
+      <main className="main-content">
+        <div className="container">
+          <Outlet />
+        </div>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
